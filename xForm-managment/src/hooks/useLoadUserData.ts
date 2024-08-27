@@ -8,13 +8,12 @@ import { loginReducer } from '../store/userReducer'
 function useLoadUserData() {
   const dispatch = useDispatch()
   const [waitingUserData, setWaitingUserData] = useState(true)
-
   // ajax 加载User信息
   const { run } = useRequest(getUserInfoService, {
     manual: true,
     onSuccess(result) {
-      const { username, nickname } = result
-      dispatch(loginReducer({ username, nickname })) // 存储到 redux store
+      // const { username, nickname } = result
+      // dispatch(loginReducer({ username, nickname })) // 存储到 redux store
     },
     onFinally() {
       setWaitingUserData(false)
@@ -28,9 +27,10 @@ function useLoadUserData() {
       setWaitingUserData(false) // 如果 redux store 已经存在User信息，就不用重新加载了
       return
     }
-    run() // 如果 redux store 中没有User信息，则进行加载
+    //signal if no username set true
+    setWaitingUserData(false)
+    // run() // 如果 redux store 中没有User信息，则进行加载
   }, [username])
-
   return { waitingUserData }
 }
 

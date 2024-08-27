@@ -21,7 +21,7 @@ export async function registerService(
 
 // Login
 export async function loginService(username: string, password: string): Promise<ResDataType> {
-  const url = '/api/user/login'
+  const url = 'http://localhost:3000/api/user/login'
   const body = { username, password }
   const data = (await axios.post(url, body)) as ResDataType
   return data

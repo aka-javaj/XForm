@@ -39,7 +39,7 @@ app.get('/api/user/info', (req, res) => {
             });
         } else {
             res.json({
-                errno: 100,
+                errno: 0,
                 msg: '用户未找到'
             });
         }
@@ -80,7 +80,7 @@ app.post('/api/user/login', (req, res) => {
     const { username, password } = req.body;
 
     // 验证用户信息
-    pool.query('SELECT id FROM users WHERE username = ? AND password = ?', 
+    pool.query('SELECT * FROM users WHERE username = ? AND password = ?', 
         [username, password], (err, results) => {
         if (err) {
             return res.json({ errno: 100, msg: '数据库查询错误' });
@@ -89,9 +89,12 @@ app.post('/api/user/login', (req, res) => {
         if (results.length > 0) {
             // 模拟生成一个token
             const token = Buffer.from(`${username}:${password}`).toString('base64');
+            // const nickname 
             res.json({
                 errno: 0,
-                data: { token }
+                data: { token,
+                    results
+                }
             });
         } else {
             res.json({

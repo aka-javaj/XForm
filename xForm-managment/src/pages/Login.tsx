@@ -8,6 +8,8 @@ import { loginService } from '../services/user'
 import { setToken } from '../utils/user-token'
 import styles from './Login.module.scss'
 
+import { useDispatch } from 'react-redux'
+import { loginReducer } from '../store/userReducer'
 const { Title } = Typography
 
 const USERNAME_KEY = 'USERNAME'
@@ -32,7 +34,7 @@ function getUserInfoFromStorage() {
 
 const Login: FC = () => {
   const nav = useNavigate()
-
+  const dispatch = useDispatch()
   const [form] = Form.useForm() // 第三方 hook
 
   useEffect(() => {
@@ -49,24 +51,28 @@ const Login: FC = () => {
       manual: true,
       onSuccess(result) {
         const { token = '' } = result
+        const { username = '', nickname = '' } = result.results[0]
         setToken(token) // 存储 token
-
+        console.log(result)
+        // const { username, nickname } = result
+        console.log(username)
+        dispatch(loginReducer({ username, nickname })) // 存储到 redux store
         message.success('Login成功')
+        console.log('Navigating to:', MANAGE_INDEX_PATHNAME)
         nav(MANAGE_INDEX_PATHNAME) // 导航到“我的问卷”
-        console.log(123)
       },
     }
   )
 
   const onFinish = (values: any) => {
     const { username, password, remember } = values || {}
-
     run(username, password) // 执行 ajax
-
     if (remember) {
       rememberUser(username, password)
+      console.log('remember' + username + '_' + password)
     } else {
       deleteUserFromStorage()
+      console.log('deleteFromStorage')
     }
   }
 

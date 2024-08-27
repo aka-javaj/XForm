@@ -16,7 +16,7 @@ function useNavPage(waitingUserData: boolean) {
   useEffect(() => {
     if (waitingUserData) return
 
-    // 已经Login了
+    // signal check login
     if (username) {
       if (isLoginOrRegister(pathname)) {
         nav(MANAGE_INDEX_PATHNAME)

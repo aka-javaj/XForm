@@ -94,13 +94,13 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
             </Space>
           </Link>
         </div>
-        {/* <div className={styles.right}>
+        <div className={styles.right}>
           <Space>
             {isPublished ? <Tag color="processing">已发布</Tag> : <Tag>未发布</Tag>}
             <span>答卷: {answerCount}</span>
             <span>{createdAt}</span>
           </Space>
-        </div> */}
+        </div>
       </div>
       <Divider style={{ margin: '12px 0' }} />
       <div className={styles['button-container']}>
@@ -110,7 +110,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               icon={<EditOutlined />}
               type="text"
               size="small"
-              // onClick={() => nav(`/question/edit/${_id}`)}
+              onClick={() => nav(`/question/edit/${_id}`)}
             >
               Edit
             </Button>
@@ -118,14 +118,14 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               icon={<LineChartOutlined />}
               type="text"
               size="small"
-              // onClick={() => nav(`/question/stat/${_id}`)}
+              onClick={() => nav(`/question/stat/${_id}`)}
               disabled={!isPublished}
             >
               Statistics
             </Button>
           </Space>
         </div>
-        {/* <div className={styles.right}>
+        <div className={styles.right}>
           <Space>
             <Button
               type="text"
@@ -156,7 +156,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               删除
             </Button>
           </Space>
-        </div> */}
+        </div>
       </div>
     </div>
   )
