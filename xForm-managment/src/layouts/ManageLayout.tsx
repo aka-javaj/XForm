@@ -42,7 +42,7 @@ const ManageLayout: FC = () => {
             type="primary"
             size="large"
             icon={<PlusOutlined />}
-            // onClick={handleCreateClick}
+            onClick={handleCreateClick}
             disabled={loading}
           >
             Create
@@ -60,7 +60,7 @@ const ManageLayout: FC = () => {
             type={pathname.startsWith('/manage/star') ? 'default' : 'text'}
             size="large"
             icon={<StarOutlined />}
-            // onClick={() => nav('/manage/star')}
+            onClick={() => nav('/manage/star')}
           >
             Favorite
           </Button>
@@ -68,7 +68,7 @@ const ManageLayout: FC = () => {
             type={pathname.startsWith('/manage/trash') ? 'default' : 'text'}
             size="large"
             icon={<DeleteOutlined />}
-            // onClick={() => nav('/manage/trash')}
+            onClick={() => nav('/manage/trash')}
           >
             Recycle Bin
           </Button>
