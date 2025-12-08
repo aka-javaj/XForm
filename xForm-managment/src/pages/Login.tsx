@@ -51,13 +51,13 @@ const Login: FC = () => {
       manual: true,
       onSuccess(result) {
         const { token = '' } = result
-        const { username = '', nickname = '' } = result.results[0]
+        //const { username = '', nickname = '' } = result.results[0]//mysql version
+        const { username = '', nickname = '' } = result.user//mongodb version
         setToken(token) // 存储 token
-        console.log(result)
         // const { username, nickname } = result
         console.log(username)
         dispatch(loginReducer({ username, nickname })) // 存储到 redux store
-        message.success('Login成功')
+        message.success('Login successful')
         console.log('Navigating to:', MANAGE_INDEX_PATHNAME)
         nav(MANAGE_INDEX_PATHNAME) // 导航到“我的问卷”
       },
@@ -98,9 +98,9 @@ const Login: FC = () => {
             label="Username"
             name="username"
             rules={[
-              { required: true, message: '请输入Username' },
+              { required: true, message: 'Please enter your username' },
               { type: 'string', min: 5, max: 20, message: 'The character length is between 5-20' },
-              { pattern: /^\w+$/, message: '只能是字母数字下划线' },
+              { pattern: /^\w+$/, message: 'Only letters, numbers, and underscores are allowed.' },
             ]}
           >
             <Input />
@@ -108,7 +108,7 @@ const Login: FC = () => {
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: '请输入密码' }]}
+            rules={[{ required: true, message: 'Please enter your password.' }]}
           >
             <Input.Password />
           </Form.Item>

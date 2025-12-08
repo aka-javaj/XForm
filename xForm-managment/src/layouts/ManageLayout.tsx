@@ -17,7 +17,7 @@ const ManageLayout: FC = () => {
   //   const { id } = data || {}
   //   if (id) {
   //     nav(`/question/edit/${id}`)
-  //     message.success('创建成功')
+  //     message.success('创建 successful')
   //   }
   //   setLoading(false)
   // }
@@ -30,7 +30,7 @@ const ManageLayout: FC = () => {
     manual: true,
     onSuccess(result) {
       nav(`/question/edit/${result.id}`)
-      message.success('创建成功')
+      message.success('Creation successful')
     },
   })
 
@@ -54,7 +54,7 @@ const ManageLayout: FC = () => {
             icon={<BarsOutlined />}
             onClick={() => nav('/manage/list')}
           >
-            My Questionnaire
+            My Surveys
           </Button>
           <Button
             type={pathname.startsWith('/manage/star') ? 'default' : 'text'}

@@ -11,7 +11,7 @@ import styles from './common.module.scss'
 const { Title } = Typography
 
 const List: FC = () => {
-  useTitle('X.Form - My Questionnaire')
+  useTitle('X.Form - My Surveys')
 
   const [started, setStarted] = useState(false) // 是否已经开始加载（防抖，有延迟时间）
   const [page, setPage] = useState(1) // List 内部的数据，不在 url 参数中体现
@@ -89,7 +89,7 @@ const List: FC = () => {
   // LoadMore Elem
   const LoadMoreContentElem = useMemo(() => {
     if (!started || loading) return <Spin />
-    if (total === 0) return <Empty description="暂无数据" />
+    if (total === 0) return <Empty description="There is no data" />
     if (!haveMoreData) return <span>No more...</span>
     return <span>Start loading the next page</span>
   }, [started, loading, haveMoreData])
@@ -98,7 +98,7 @@ const List: FC = () => {
     <>
       <div className={styles.header}>
         <div className={styles.left}>
-          <Title level={3}>My Questionnaire</Title>
+          <Title level={3}>My Surveys</Title>
         </div>
         <div className={styles.right}>
           <ListSearch />

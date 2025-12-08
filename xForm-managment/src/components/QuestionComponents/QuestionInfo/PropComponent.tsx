@@ -26,10 +26,10 @@ const PropComponent: FC<QuestionInfoPropsType> = (props: QuestionInfoPropsType) 
       disabled={disabled}
       form={form}
     >
-      <Form.Item label="标题" name="title" rules={[{ required: true, message: '请输入问卷标题' }]}>
+      <Form.Item label="" name="title" rules={[{ required: true, message: 'please enter title' }]}>
         <Input />
       </Form.Item>
-      <Form.Item label="描述" name="desc">
+      <Form.Item label="Description" name="desc">
         <TextArea />
       </Form.Item>
     </Form>

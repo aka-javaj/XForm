@@ -1,8 +1,8 @@
+
 const mongoose = require('mongoose');
 
-// 使用环境变量 MONGO_URL 或直接使用 MongoDB Atlas 的连接字符串
-// const mongoUrl = process.env.MONGO_URL || 'mongodb+srv://ggeaszzzz:nlHPDNX6dZGo6Mqg@cluster0.q2mgw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/xForm'; 
+
 /**
  * Global is used here to maintain a cached connection across hot reloads
  * in development. This prevents connections growing exponentially
@@ -23,13 +23,12 @@ async function connectToMongoDB() {
     const opts = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      bufferCommands: false, // 确保只有在连接 successful后才执行命令
+      bufferCommands: false // 确保只有在连接 successful后才执行命令
     };
 
-    // 替换为 MongoDB Atlas 的连接字符串
     cached.promise = mongoose.connect(mongoUrl, opts)
       .then(mongoose => {
-        console.log('Connected to MongoDB Atlas');
+        console.log('Connected to MongoDB');
         return mongoose;
       })
       .catch(err => {

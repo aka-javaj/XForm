@@ -17,7 +17,7 @@ const ComponentList: FC<PropsType> = props => {
   return (
     <div className={styles.container}>
       {componentList
-        .filter(c => !c.isHidden) // 过滤隐藏的组件
+        .filter(c => !c.isHidden) // 过滤Hide的组件
         .map(c => {
           const { fe_id, props, type } = c
 

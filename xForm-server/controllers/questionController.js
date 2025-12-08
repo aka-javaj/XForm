@@ -1,21 +1,14 @@
-// const connectToMongoDB = require('../config/db.js');
-// import dbConnect from '../config/mongo.js'
-// 从 ES6 的 import 替换为 CommonJS 的 require
-// const dbConnect = require('../config/mongo.js');
 
 const Question = require('../models/question');
 const { ObjectId } = require('mongodb');
 
-// 获取单个问卷信息connectToMongoDB
+// 获取单个Survey InformationconnectToMongoDB
 exports.getQuestionById = async (req, res) => {
     try {
-        // dbConnect.dbConnect();
         console.log(req.params.id)
-        const foundDoc1 = await Question.findOne({ id: 'Test Document' });
-        console.log(foundDoc1)
-        const question = await Question.findById(req.params.id);
-        console.log('finish----')
+        const question = await Question.findById(req.params.id).lean();
         if (question) {
+            question.id = question._id; // 将 _id 映射到 id 字段
             res.json({ errno: 0, data: question });
         } else {
             res.json({
@@ -23,11 +16,13 @@ exports.getQuestionById = async (req, res) => {
                 data: {
                     id: req.params.id,
                     title: 'title',
-                    desc: '问卷描述',
+                    desc: 'desc',
+                    userId: 1,
                     js: '',
                     css: '',
                     isDeleted: false,
                     isPublished: true,
+                    isStar: false,
                     componentList: getComponentList(),
                 }
             });
@@ -71,17 +66,25 @@ exports.getQuestionList = async (req, res) => {
     }
 };
 
-// 更新问卷
+// update or insert question
 exports.updateQuestion = async (req, res) => {
     try {
-        await Question.findByIdAndUpdate(req.params.id, req.body);
+        await Question.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true, // Return更新后的文档
+                upsert: true // 如果找不到文档则创建一个新文档
+            }
+            );
+        
         res.json({ errno: 0 });
     } catch (err) {
         res.status(500).json({ errno: 1002, msg: '更新问卷失败' });
     }
 };
 
-// 复制问卷
+// Copy问卷
 exports.duplicateQuestion = async (req, res) => {
     try {
         const originalQuestion = await Question.findById(req.params.id);
@@ -89,17 +92,17 @@ exports.duplicateQuestion = async (req, res) => {
         await duplicatedQuestion.save();
         res.json({ errno: 0, data: { id: duplicatedQuestion._id } });
     } catch (err) {
-        res.status(500).json({ errno: 1002, msg: '复制问卷失败' });
+        res.status(500).json({ errno: 1002, msg: 'Copy问卷失败' });
     }
 };
 
-// 批量彻底删除
+// 批量彻底Delete
 exports.deleteQuestions = async (req, res) => {
     try {
         await Question.deleteMany({ _id: { $in: req.body.ids } });
         res.json({ errno: 0 });
     } catch (err) {
-        res.status(500).json({ errno: 1002, msg: '删除问卷失败' });
+        res.status(500).json({ errno: 1002, msg: 'Delete问卷失败' });
     }
 };
 
@@ -109,70 +112,70 @@ function getComponentList() {
         {
             fe_id: 'c1', // 注意，由于统计页，左侧和中间需要数据完全一直，所以要写死 fe_id ，不能用 Random.id()
             type: 'questionInfo', // 组件类型，不能重复，前后端统一好
-            title: '问卷信息',
+            title: 'the survey information',
             isHidden: false,
             isLocked: false,
-            props: { title: '问卷标题', desc: '问卷描述...' }
+            props: { title: 'Survey Title', desc: 'Description...' }
         },
         // Title
         {
             fe_id: 'c2',
             type: 'questionTitle', // 组件类型，不能重复，前后端统一好
-            title: '标题',
+            title: 'Title',
             isHidden: false,
             isLocked: false,
-            props: { text: '个人信息调研', level: 1, isCenter: false }
+            props: { text: 'Information', level: 1, isCenter: false }
         },
         // Input
         {
             fe_id: 'c3',
             type: 'questionInput',
-            title: '输入框1',
+            title: 'Input field 1',
             isHidden: false,
             isLocked: false,
-            props: { title: '你的姓名', placeholder: '请输入姓名...' }
+            props: { title: 'Your Name', placeholder: 'Please enter your name...' }
         },
         // Input
         {
             fe_id: 'c4',
             type: 'questionInput',
-            title: '输入框2',
+            title: 'Input field 2',
             isHidden: false,
             isLocked: false,
-            props: { title: '你的电话', placeholder: '请输入电话...' }
+            props: { title: 'Your phone', placeholder: 'Please enter your phone...' }
         },
         // Textarea
         {
             fe_id: 'c5',
             type: 'questionTextarea',
-            title: '多行输入',
+            title: 'Input field ',
             isHidden: false,
             isLocked: false,
-            props: { title: '你的爱好', placeholder: '请输入...' }
+            props: { title: 'Your hobbies', placeholder: 'Please enter your hobbies...' }
         },
         // Paragraph
         {
             fe_id: 'c6',
             type: 'questionParagraph',
-            title: '段落',
+            title: 'Text',
             isHidden: false,
             isLocked: false,
-            props: { text: '一行段落1\n一行段落2', isCenter: false }
+            props: { text: 'Paragraph1\nParagraph2', isCenter: false }
         },
         // Radio
         {
             fe_id: 'c7',
             type: 'questionRadio',
-            title: '单选',
+            title: 'Single-choice',
             isHidden: false,
             isLocked: false,
             props: {
-                title: '单选标题',
+                title: 'Single-choice Title',
                 isVertical: false,
                 options: [
-                  { value: 'item1', text: '选项1' },
-                  { value: 'item2', text: '选项2' },
-                  { value: 'item3', text: '选项3' },
+                  { value: 'item1', text: 'A' },
+                  { value: 'item2', text: 'B' },
+                  { value: 'item3', text: 'C' },
                 ],
                 value: '',
               }
@@ -181,16 +184,16 @@ function getComponentList() {
         {
             fe_id: 'c8',
             type: 'questionCheckbox',
-            title: '多选',
+            title: 'Multiple-choice',
             isHidden: false,
             isLocked: false,
             props: {
-                title: '多选标题',
+                title: 'Multiple-choice Title',
                 isVertical: false,
                 list: [
-                    { value: 'item1', text: '选项1', checked: true },
-                    { value: 'item2', text: '选项2', checked: false },
-                    { value: 'item3', text: '选项3', checked: false },
+                    { value: 'item1', text: 'A', checked: true },
+                    { value: 'item2', text: 'B', checked: false },
+                    { value: 'item3', text: 'C', checked: false },
                 ],
               }
         }

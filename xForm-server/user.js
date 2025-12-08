@@ -99,7 +99,7 @@ app.post('/api/user/login', (req, res) => {
         } else {
             res.json({
                 errno: 102,
-                msg: '用户名或密码错误'
+                msg: 'Incorrect username or password.'
             });
         }
     });

@@ -6,13 +6,13 @@ import Component from './Component'
 test('默认属性', () => {
   render(<Component />)
 
-  const p = screen.getByText('单选标题')
+  const p = screen.getByText('Single-choice Title')
   expect(p).toBeInTheDocument()
 
   for (let i = 1; i <= 3; i++) {
     const radio = screen.getByDisplayValue(`item${i}`)
     expect(radio).toBeInTheDocument()
-    const label = screen.getByText(`选项${i}`)
+    const label = screen.getByText(`Option${i}`)
     expect(label).toBeInTheDocument()
   }
 })

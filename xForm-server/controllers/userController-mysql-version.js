@@ -1,16 +1,15 @@
-const User = require('../models/user'); // 引入 MongoDB 用户模型
+const { mysqlPool } = require('../config/db'); // 引入MySQL连接池
 
 // 获取用户信息
 exports.getUserInfo = async (req, res) => {
     try {
         const userId = req.query.id;
+        const [results] = await mysqlPool.query('SELECT username, nickname FROM users WHERE id = ?', [userId]);
 
-        const user = await User.findById(userId).select('username nickname'); // 仅选择 username 和 nickname
-
-        if (user) {
+        if (results.length > 0) {
             res.json({
                 errno: 0,
-                data: user
+                data: results[0]
             });
         } else {
             res.json({
@@ -19,7 +18,6 @@ exports.getUserInfo = async (req, res) => {
             });
         }
     } catch (err) {
-        console.error('Error getting user info:', err);
         res.json({ errno: 100, msg: '数据库查询错误' });
     }
 };
@@ -29,23 +27,20 @@ exports.registerUser = async (req, res) => {
     try {
         const { username, nickname, password } = req.body;
 
-        // 检查用户名是否已存在
-        const existingUser = await User.findOne({ username });
+        const [results] = await mysqlPool.query('SELECT id FROM users WHERE username = ?', [username]);
 
-        if (existingUser) {
+        if (results.length > 0) {
             return res.json({
                 errno: 101,
                 msg: '用户已存在'
             });
         }
 
-        // 创建新用户
-        const newUser = new User({ username, nickname, password });
-        await newUser.save();
+        await mysqlPool.query('INSERT INTO users (username, nickname, password) VALUES (?, ?, ?)', 
+            [username, nickname, password]);
 
         res.json({ errno: 0 });
     } catch (err) {
-        console.error('Error registering user:', err);
         res.json({ errno: 100, msg: '注册失败，数据库错误' });
     }
 };
@@ -55,15 +50,14 @@ exports.loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // 查询用户名和密码是否匹配
-        const user = await User.findOne({ username, password });
+        const [results] = await mysqlPool.query('SELECT * FROM users WHERE username = ? AND password = ?', 
+            [username, password]);
 
-        if (user) {
-            // 创建简单的 Base64 token
+        if (results.length > 0) {
             const token = Buffer.from(`${username}:${password}`).toString('base64');
             res.json({
                 errno: 0,
-                data: { token, user }
+                data: { token, results }
             });
         } else {
             res.json({
@@ -72,7 +66,6 @@ exports.loginUser = async (req, res) => {
             });
         }
     } catch (err) {
-        console.error('Error logging in user:', err);
         res.json({ errno: 100, msg: '数据库查询错误' });
     }
 };

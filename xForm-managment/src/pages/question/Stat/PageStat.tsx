@@ -84,7 +84,7 @@ const PageStat: FC<PropsType> = (props: PropsType) => {
 
   return (
     <div>
-      <Title level={3}>答卷数量: {!loading && total}</Title>
+      <Title level={3}>Answer Sheet Total: {!loading && total}</Title>
       {loading && (
         <div style={{ textAlign: 'center' }}>
           <Spin />

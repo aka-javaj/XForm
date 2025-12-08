@@ -40,8 +40,8 @@ const Home: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <Title>Questionnaire Survey | Online Voting</Title>
-        <Paragraph>A total of 100 questionnaries have been created</Paragraph>
+        <Title>Survey | Online Voting</Title>
+        <Paragraph>A total of 999+ surveys have been created. Welcome to our survey platform</Paragraph>
         <div>
           <Button type="primary" onClick={() => nav(MANAGE_INDEX_PATHNAME)}>
             Start

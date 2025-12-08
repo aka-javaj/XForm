@@ -6,10 +6,10 @@ import Component from './Component'
 test('默认属性', () => {
   render(<Component />)
 
-  const p = screen.getByText('输入框标题')
+  const p = screen.getByText('Input field title')
   expect(p).toBeInTheDocument()
 
-  const input = screen.getByPlaceholderText('请输入...')
+  const input = screen.getByPlaceholderText('Please enter ...')
   expect(input).toBeInTheDocument()
 })
 

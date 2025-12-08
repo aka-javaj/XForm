@@ -24,7 +24,7 @@ const pageInfoSlice = createSlice({
       return action.payload
     },
 
-    // 修改标题
+    // 修改Title
     changePageTitle: produce((draft: PageInfoType, action: PayloadAction<string>) => {
       draft.title = action.payload
     }),

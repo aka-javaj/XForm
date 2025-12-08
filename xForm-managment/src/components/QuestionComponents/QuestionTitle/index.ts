@@ -1,5 +1,5 @@
 /**
- * @description 问卷 标题
+ * @description 问卷 Title
  * @author Haihua XU
  */
 
@@ -11,7 +11,7 @@ export * from './interface'
 
 // Title 组件的配置
 export default {
-  title: '标题',
+  title: 'Title',
   type: 'questionTitle', // 要和后端统一好
   Component,
   PropComponent,

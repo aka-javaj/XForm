@@ -23,7 +23,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'POST') {
-    // 不是 post 则返回错误
+    // 不是 post 则Return错误
     res.status(200).json({ errno: -1, msg: 'Method 错误' })
   }
 
@@ -35,16 +35,25 @@ export default async function handler(
   try {
     // 提交到服务端 Mock
     const resData = await postAnswer(answerInfo)
+    // 使用 302 状态码重定向
     if (resData.errno === 0) {
-      // 如果提交成功了
-      res.redirect('/success')
+      return res.writeHead(302, { Location: '/success' }).end();
     } else {
-      // 提交失败了
-      res.redirect('/fail')
+      return res.writeHead(302, { Location: '/fail' }).end();
     }
   } catch (err) {
-    res.redirect('/fail')
+    return res.writeHead(302, { Location: '/fail' }).end();
   }
+  //   if (resData.errno === 0) {
+  //     // 如果提交 successful了
+  //     res.redirect('/success')
+  //   } else {
+  //     // 提交失败了 
+  //     res.redirect('/fail')
+  //   }
+  // } catch (err) {
+  //   res.redirect('/fail')
+  // }
 
   // res.status(200).json({ errno: 0 })
 }

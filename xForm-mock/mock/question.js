@@ -6,7 +6,7 @@ const Random = Mock.Random
 
 module.exports = [
     {
-        // 获取单个问卷信息
+        // 获取单个Survey Information
         url: '/api/question/:id',
         method: 'get',
         response() {
@@ -71,7 +71,7 @@ module.exports = [
         }
     },
     {
-        // 复制问卷
+        // Copy问卷
         url: '/api/question/duplicate/:id',
         method: 'post',
         response() {
@@ -84,7 +84,7 @@ module.exports = [
         }
     },
     {
-        // 批量彻底删除
+        // 批量彻底Delete
         url: '/api/question',
         method: 'delete',
         response() {

@@ -68,7 +68,7 @@ export const componentsSlice = createSlice({
       }
     ),
 
-    // 删除选中的组件
+    // Delete选中的组件
     removeSelectedComponent: produce((draft: ComponentsStateType) => {
       const { componentList = [], selectedId: removedId } = draft
 
@@ -80,7 +80,7 @@ export const componentsSlice = createSlice({
       componentList.splice(index, 1)
     }),
 
-    // 隐藏/显示 组件
+    // Hide/显示 组件
     changeComponentHidden: produce(
       (draft: ComponentsStateType, action: PayloadAction<{ fe_id: string; isHidden: boolean }>) => {
         const { componentList = [] } = draft
@@ -89,7 +89,7 @@ export const componentsSlice = createSlice({
         // 重新计算 selectedId
         let newSelectedId = ''
         if (isHidden) {
-          // 要隐藏
+          // 要Hide
           newSelectedId = getNextSelectedId(fe_id, componentList)
         } else {
           // 要显示
@@ -104,7 +104,7 @@ export const componentsSlice = createSlice({
       }
     ),
 
-    // 锁定/解锁 组件
+    // Lock/解锁 组件
     toggleComponentLocked: produce(
       (draft: ComponentsStateType, action: PayloadAction<{ fe_id: string }>) => {
         const { fe_id } = action.payload
@@ -124,7 +124,7 @@ export const componentsSlice = createSlice({
       draft.copiedComponent = cloneDeep(selectedComponent) // 深拷贝
     }),
 
-    // 粘贴组件
+    // Paste组件
     pasteCopiedComponent: produce((draft: ComponentsStateType) => {
       const { copiedComponent } = draft
       if (copiedComponent == null) return
@@ -158,7 +158,7 @@ export const componentsSlice = createSlice({
       draft.selectedId = componentList[selectedIndex + 1].fe_id
     }),
 
-    // 修改组件标题
+    // 修改组件Title
     changeComponentTitle: produce(
       (draft: ComponentsStateType, action: PayloadAction<{ fe_id: string; title: string }>) => {
         const { title, fe_id } = action.payload

@@ -19,14 +19,14 @@ const Layers: FC = () => {
   const { componentList, selectedId } = useGetComponentInfo()
   const dispatch = useDispatch()
 
-  // 记录当前正在修改标题的组件
+  // 记录当前正在修改Title的组件
   const [changingTitleId, setChangingTitleId] = useState('')
 
   // 点击选中组件
   function handleTitleClick(fe_id: string) {
     const curComp = componentList.find(c => c.fe_id === fe_id)
     if (curComp && curComp.isHidden) {
-      message.info('不能选中隐藏的组件')
+      message.info('不能选中Hide的组件')
       return
     }
     if (fe_id !== selectedId) {
@@ -36,11 +36,11 @@ const Layers: FC = () => {
       return
     }
 
-    // 点击修改标题
+    // 点击修改Title
     setChangingTitleId(fe_id)
   }
 
-  // 修改标题
+  // 修改Title
   function changeTitle(event: ChangeEvent<HTMLInputElement>) {
     const newTitle = event.target.value.trim()
     if (!newTitle) return
@@ -48,12 +48,12 @@ const Layers: FC = () => {
     dispatch(changeComponentTitle({ fe_id: selectedId, title: newTitle }))
   }
 
-  // 切换 隐藏/显示
+  // 切换 Hide/显示
   function changeHidden(fe_id: string, isHidden: boolean) {
     dispatch(changeComponentHidden({ fe_id, isHidden }))
   }
 
-  // 切换 锁定/解锁
+  // 切换 Lock/解锁
   function changeLocked(fe_id: string) {
     dispatch(toggleComponentLocked({ fe_id }))
   }

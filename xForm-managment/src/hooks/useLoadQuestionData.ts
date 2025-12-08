@@ -38,7 +38,7 @@ function useLoadQuestionData() {
     // 获取默认的 selectedId
     let selectedId = ''
     if (componentList.length > 0) {
-      selectedId = componentList[0].fe_id // 默认选中第一个组件
+      selectedId = componentList[0].fe_id // Default selected第一个组件
     }
 
     // 把 componentList 存储到 Redux store 中

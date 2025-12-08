@@ -32,62 +32,62 @@ const EditToolbar: FC = () => {
   const isFirst = selectedIndex <= 0 // 第一个
   const isLast = selectedIndex + 1 >= length // 最后一个
 
-  // 删除组件
+  // Delete组件
   function handleDelete() {
     dispatch(removeSelectedComponent())
   }
 
-  // 隐藏组件
+  // Hide组件
   function handleHidden() {
     dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }))
   }
 
-  // 锁定组件
+  // Lock组件
   function handleLock() {
     dispatch(toggleComponentLocked({ fe_id: selectedId }))
   }
 
-  // 复制
+  // Copy
   function copy() {
     dispatch(copySelectedComponent())
   }
 
-  // 粘贴
+  // Paste
   function paste() {
     dispatch(pasteCopiedComponent())
   }
 
-  // 上移
+  // Move Up
   function moveUp() {
     if (isFirst) return
     dispatch(moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex - 1 }))
   }
 
-  // 下移
+  // Move Down
   function moveDown() {
     if (isLast) return
     dispatch(moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex + 1 }))
   }
 
-  // 撤销
+  // Undo
   function undo() {
     dispatch(UndoActionCreators.undo())
   }
 
-  // 重做
+  // Recover
   function redo() {
     dispatch(UndoActionCreators.redo())
   }
 
   return (
     <Space>
-      <Tooltip title="删除">
+      <Tooltip title="Delete">
         <Button shape="circle" icon={<DeleteOutlined />} onClick={handleDelete}></Button>
       </Tooltip>
-      <Tooltip title="隐藏">
+      <Tooltip title="Hide">
         <Button shape="circle" icon={<EyeInvisibleOutlined />} onClick={handleHidden}></Button>
       </Tooltip>
-      <Tooltip title="锁定">
+      <Tooltip title="Lock">
         <Button
           shape="circle"
           icon={<LockOutlined />}
@@ -95,10 +95,10 @@ const EditToolbar: FC = () => {
           type={isLocked ? 'primary' : 'default'}
         ></Button>
       </Tooltip>
-      <Tooltip title="复制">
+      <Tooltip title="Copy">
         <Button shape="circle" icon={<CopyOutlined />} onClick={copy}></Button>
       </Tooltip>
-      <Tooltip title="粘贴">
+      <Tooltip title="Paste">
         <Button
           shape="circle"
           icon={<BlockOutlined />}
@@ -106,10 +106,10 @@ const EditToolbar: FC = () => {
           disabled={copiedComponent == null}
         ></Button>
       </Tooltip>
-      <Tooltip title="上移">
+      <Tooltip title="Move Up">
         <Button shape="circle" icon={<UpOutlined />} onClick={moveUp} disabled={isFirst}></Button>
       </Tooltip>
-      <Tooltip title="下移">
+      <Tooltip title="Move Down">
         <Button
           shape="circle"
           icon={<DownOutlined />}
@@ -117,10 +117,10 @@ const EditToolbar: FC = () => {
           disabled={isLast}
         ></Button>
       </Tooltip>
-      <Tooltip title="撤销">
+      <Tooltip title="Undo">
         <Button shape="circle" icon={<UndoOutlined />} onClick={undo}></Button>
       </Tooltip>
-      <Tooltip title="重做">
+      <Tooltip title="Recover">
         <Button shape="circle" icon={<RedoOutlined />} onClick={redo}></Button>
       </Tooltip>
     </Space>

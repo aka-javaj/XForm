@@ -3,7 +3,8 @@ import { message } from 'antd'
 import { getToken } from '../utils/user-token'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000', // 设置后端接口的基础URL
+  // baseURL: 'http://localhost:3001', // 设置后端接口的基础URL
+  baseURL: 'http://52.63.238.118:3001',
   timeout: 10000, // 请求超时时间
   headers: { 'Content-Type': 'application/json' },
 })

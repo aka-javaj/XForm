@@ -9,7 +9,7 @@ type SearchOption = {
   pageSize: number
 }
 
-// 获取单个问卷信息
+// 获取单个Survey Information
 export async function getQuestionService(id: string): Promise<ResDataType> {
   const url = `/api/question/${id}`
   const data = (await axios.get(url)) as ResDataType
@@ -42,14 +42,14 @@ export async function updateQuestionService(
   return data
 }
 
-// 复制问卷
+// Copy问卷
 export async function duplicateQuestionService(id: string): Promise<ResDataType> {
   const url = `/api/question/duplicate/${id}`
   const data = (await axios.post(url)) as ResDataType
   return data
 }
 
-// 批量彻底删除
+// 批量彻底Delete
 export async function deleteQuestionsService(ids: string[]): Promise<ResDataType> {
   const url = '/api/question'
   const data = (await axios.delete(url, { data: { ids } })) as ResDataType

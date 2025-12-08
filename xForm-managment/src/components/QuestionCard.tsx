@@ -38,12 +38,12 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
       manual: true,
       onSuccess() {
         setIsStarState(!isStarState) // 更新 state
-        message.success('已更新')
+        message.success('Updated')
       },
     }
   )
 
-  // 复制
+  // Copy
   const { loading: duplicateLoading, run: duplicate } = useRequest(
     // async () => {
     //   const data = await duplicateQuestionService(_id)
@@ -53,20 +53,20 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
     {
       manual: true,
       onSuccess(result) {
-        message.success('复制成功')
-        nav(`/question/edit/${result.id}`) // 跳转到问卷编辑页
+        message.success('Copy successful')
+        nav(`/question/edit/${result.id}`) // 跳转到Edit Survey页
       },
     }
   )
 
-  // 删除
+  // Delete
   const [isDeletedState, setIsDeletedState] = useState(false)
   const { loading: deleteLoading, run: deleteQuestion } = useRequest(
     async () => await updateQuestionService(_id, { isDeleted: true }),
     {
       manual: true,
       onSuccess() {
-        message.success('删除成功')
+        message.success('Delete successful')
         setIsDeletedState(true)
       },
     }
@@ -74,13 +74,13 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
 
   function del() {
     confirm({
-      title: '确定删除该问卷？',
+      title: 'Confirm to delete？',
       icon: <ExclamationCircleOutlined />,
       onOk: deleteQuestion,
     })
   }
 
-  // 已经删除的问卷，不要再渲染卡片了
+  // 已经Delete的问卷，不要再渲染卡片了
   if (isDeletedState) return null
 
   return (
@@ -96,8 +96,8 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
         </div>
         <div className={styles.right}>
           <Space>
-            {isPublished ? <Tag color="processing">已发布</Tag> : <Tag>未发布</Tag>}
-            <span>答卷: {answerCount}</span>
+            {isPublished ? <Tag color="processing">Published</Tag> : <Tag>未发布</Tag>}
+            <span>Answer Sheet: {answerCount}</span>
             <span>{createdAt}</span>
           </Space>
         </div>
@@ -134,17 +134,18 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               onClick={changeStar}
               disabled={changeStarLoading}
             >
-              {isStarState ? '取消标星' : '标星'}
+              {isStarState ? 'Unstar' : 'Star'}
             </Button>
             <Popconfirm
-              title="确定复制该问卷？"
+              title="确定Copy该问卷？"
               okText="确定"
               cancelText="取消"
               onConfirm={duplicate}
             >
-              <Button type="text" icon={<CopyOutlined />} size="small" disabled={duplicateLoading}>
-                复制
-              </Button>
+              {/* todo： cancel duplicate function */}
+              {/* <Button type="text" icon={<CopyOutlined />} size="small" disabled={duplicateLoading}>
+                Copy
+              </Button> */}
             </Popconfirm>
             <Button
               type="text"
@@ -153,7 +154,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               onClick={del}
               disabled={deleteLoading}
             >
-              删除
+              Delete
             </Button>
           </Space>
         </div>

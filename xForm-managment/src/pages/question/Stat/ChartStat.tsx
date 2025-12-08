@@ -33,17 +33,17 @@ const ChartStat: FC<PropsType> = (props: PropsType) => {
 
   // 生成统计图表
   function genStatElem() {
-    if (!selectedComponentId) return <div>未选中组件</div>
+    if (!selectedComponentId) return <div>Please select a component from the left side.</div>
 
     const { StatComponent } = getComponentConfByType(selectedComponentType) || {}
-    if (StatComponent == null) return <div>该组件无统计图表</div>
+    if (StatComponent == null) return <div>This component has no statistical chart.</div>
 
     return <StatComponent stat={stat} />
   }
 
   return (
     <>
-      <Title level={3}>图表统计</Title>
+      <Title level={3}>Chart statistics</Title>
       <div>{genStatElem()}</div>
     </>
   )

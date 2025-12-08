@@ -26,21 +26,21 @@ const RightPanel: FC = () => {
       label: (
         <span>
           <FileTextOutlined />
-          属性
+          Properties
         </span>
       ),
       children: <ComponentProp />,
     },
-    {
-      key: TAB_KEYS.SETTING_KEY,
-      label: (
-        <span>
-          <SettingOutlined />
-          页面设置
-        </span>
-      ),
-      children: <PageSetting />,
-    },
+    // {
+    //   key: TAB_KEYS.SETTING_KEY,
+    //   label: (
+    //     <span>
+    //       <SettingOutlined />
+    //       Page settings
+    //     </span>
+    //   ),
+    //   children: <PageSetting />,
+    // },
   ]
 
   return <Tabs activeKey={activeKey} items={tabsItems}></Tabs>

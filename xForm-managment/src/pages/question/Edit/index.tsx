@@ -23,7 +23,7 @@ const Edit: FC = () => {
 
   // 修改标题
   const { title } = useGetPageInfo()
-  useTitle(`问卷编辑 - ${title}`)
+  useTitle(`Edit Survey - ${title}`)
 
   return (
     <div className={styles.container}>

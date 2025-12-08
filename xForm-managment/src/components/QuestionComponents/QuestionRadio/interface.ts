@@ -15,12 +15,12 @@ export type QuestionRadioPropsType = {
 }
 
 export const QuestionRadioDefaultProps: QuestionRadioPropsType = {
-  title: '单选标题',
+  title: 'Single-choice Title',
   isVertical: false,
   options: [
-    { value: 'item1', text: '选项1' },
-    { value: 'item2', text: '选项2' },
-    { value: 'item3', text: '选项3' },
+    { value: 'item1', text: 'A' },
+    { value: 'item2', text: 'B' },
+    { value: 'item3', text: 'C' },
   ],
   value: '',
 }

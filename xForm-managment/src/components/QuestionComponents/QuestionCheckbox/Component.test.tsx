@@ -6,13 +6,13 @@ import Component from './Component'
 test('默认属性', () => {
   render(<Component />)
 
-  const p = screen.getByText('多选标题')
+  const p = screen.getByText('Multiple-choice Title')
   expect(p).toBeInTheDocument()
 
   for (let i = 1; i <= 3; i++) {
     const checkbox = screen.getByDisplayValue(`item${i}`)
     expect(checkbox).toBeInTheDocument()
-    const label = screen.getByText(`选项${i}`)
+    const label = screen.getByText(`Option${i}`)
     expect(label).toBeInTheDocument()
 
     expect(checkbox.getAttribute('checked')).toBeNull() // 每一个 Checkbox 默认都未选中

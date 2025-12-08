@@ -1,0 +1,198 @@
+66cd8bb0888066aba079f532	0	[
+    {
+        fe_id: "c7",
+        type: "questionRadio",
+        title: "Single Choice",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            title: "Single Choice标题",
+            isVertical: false,
+            options: [
+                {
+                    value: "item1",
+                    text: "选项1"
+                },
+                {
+                    value: "item2",
+                    text: "选项2"
+                },
+                {
+                    value: "item3",
+                    text: "选项3"
+                }
+            ],
+            value: ""
+        }
+    },
+    {
+        fe_id: "nG8PpAsVtNoewHHe9bkf4",
+        title: "Survey Information",
+        type: "questionInfo",
+        props: {
+            title: "问卷Title",
+            desc: "问卷描述"
+        }
+    },
+    {
+        fe_id: "BYGptrXovOlBKO9PD-Hfa",
+        title: "Title",
+        type: "questionTitle",
+        props: {
+            text: "一行Title",
+            level: Int32("2"),
+            isCenter: true
+        }
+    },
+    {
+        fe_id: "XEG44XRjyMQX3LYtmT5PO",
+        title: "段落",
+        type: "questionParagraph",
+        props: {
+            text: "阿斯顿发送发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送地方",
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "XJRuPP8_RRA32v3BHiF4O",
+        title: "Title",
+        type: "questionTitle",
+        props: {
+            text: "一行Title",
+            level: Int32("1"),
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "UJ46KKcgxl4rub-uJXBGi",
+        title: "Title",
+        type: "questionTitle",
+        props: {
+            text: "一行Title",
+            level: Int32("1"),
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "Fd4oazsXFXZbFBXb9nmUT",
+        title: "Title",
+        type: "questionTitle",
+        props: {
+            text: "一行Title",
+            level: Int32("1"),
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "8adhYEqX6mdMGSDxhzvrO",
+        title: "Survey Information",
+        type: "questionInfo",
+        props: {
+            title: "问卷标题",
+            desc: "问卷描述"
+        }
+    },
+    {
+        fe_id: "l205Y7EZXQdKa4tOvtVwg",
+        title: "标题",
+        type: "questionTitle",
+        props: {
+            text: "一行标题",
+            level: Int32("1"),
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "QdAW_Xd_VBCxQ9iHvNH5P",
+        title: "Survey Information",
+        type: "questionInfo",
+        props: {
+            title: "问卷标题",
+            desc: "问卷描述"
+        }
+    },
+    {
+        fe_id: "c8",
+        type: "questionCheckbox",
+        title: "Multiple Choice",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            title: "Multiple Choice标题",
+            isVertical: false,
+            list: [
+                {
+                    value: "item1",
+                    text: "选项1",
+                    checked: true
+                },
+                {
+                    value: "item2",
+                    text: "选项2",
+                    checked: false
+                },
+                {
+                    value: "item3",
+                    text: "选项3",
+                    checked: false
+                }
+            ]
+        }
+    },
+    {
+        fe_id: "c1",
+        type: "questionInfo",
+        title: "Survey Information",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            title: "问卷标题",
+            desc: "titile descrebe"
+        }
+    },
+    {
+        fe_id: "c2",
+        type: "questionTitle",
+        title: "标题",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            text: "个人信息调研",
+            level: Int32("1"),
+            isCenter: false
+        }
+    },
+    {
+        fe_id: "c4",
+        type: "questionInput",
+        title: "Input Box2",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            title: "你的电话",
+            placeholder: "1"
+        }
+    },
+    {
+        fe_id: "c5",
+        type: "questionTextarea",
+        title: "Multi-line Text Input",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            title: "你的爱好",
+            placeholder: "Please enter ..."
+        }
+    },
+    {
+        fe_id: "c6",
+        type: "questionParagraph",
+        title: "段落",
+        isHidden: false,
+        isLocked: false,
+        props: {
+            text: "一行段落1\n一行段落2",
+            isCenter: false
+        }
+    }
+]		问卷描述	false	true		title

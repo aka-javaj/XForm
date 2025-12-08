@@ -3,14 +3,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const questionRoutes = require('./routes/questionRoutes.js');
 const userRoutes = require('./routes/userRoutes');
+const answerRoutes = require('./routes/answerRoutes');
 // const { mysqlPool, mongoDb } = require('./config/db'); // 引入MySQL和MongoDB的配置
 const connectToMongoDB = require('./config/mongo.js');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(cors({
-    origin: 'http://localhost:8000',
+    origin: ['http://xform1.s3-website-ap-southeast-2.amazonaws.com', 'http://localhost:8000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],  // 允许的 HTTP 方法
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -21,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // 使用路由
 app.use('/api/question', questionRoutes);
 app.use('/api/user', userRoutes);
-
-// 在应用启动时连接数据库
+app.use('/api/answer', answerRoutes);
+// 在应用启动时连接MongoDB数据库
 connectToMongoDB().then(() => {
     console.log('Database connected');
 }).catch(err => {

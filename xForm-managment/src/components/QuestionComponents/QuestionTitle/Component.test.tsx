@@ -5,7 +5,7 @@ import Component from './Component'
 
 test('默认属性', () => {
   render(<Component />)
-  const h = screen.getByText('一行标题')
+  const h = screen.getByText('Title')
   expect(h).toBeInTheDocument()
 })
 

@@ -19,7 +19,7 @@ const QuestionCheckbox: FC<PropsType> = ({ fe_id, props }) => {
 
   const [selectedValues, setSelectedValues] = useState<string[]>([])
 
-  // 初始化时，判断默认选中
+  // 初始化时，判断Default selected
   useEffect(() => {
     list.forEach(item => {
       const { value, checked } = item

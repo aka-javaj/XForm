@@ -5,7 +5,7 @@ import Component from './Component'
 
 test('默认属性', () => {
   render(<Component />)
-  const span = screen.getByText('一行段落')
+  const span = screen.getByText('Paragraph')
   expect(span).toBeInTheDocument()
 })
 

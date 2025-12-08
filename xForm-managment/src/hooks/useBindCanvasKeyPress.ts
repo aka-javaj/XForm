@@ -28,19 +28,19 @@ function isActiveElementValid() {
 function useBindCanvasKeyPress() {
   const dispatch = useDispatch()
 
-  // 删除组件
+  // Delete组件
   useKeyPress(['backspace', 'delete'], () => {
     if (!isActiveElementValid()) return
     dispatch(removeSelectedComponent())
   })
 
-  // 复制
+  // Copy
   useKeyPress(['ctrl.c', 'meta.c'], () => {
     if (!isActiveElementValid()) return
     dispatch(copySelectedComponent())
   })
 
-  // 粘贴
+  // Paste
   useKeyPress(['ctrl.v', 'meta.v'], () => {
     if (!isActiveElementValid()) return
     dispatch(pasteCopiedComponent())
@@ -58,7 +58,7 @@ function useBindCanvasKeyPress() {
     dispatch(selectNextComponent())
   })
 
-  // 撤销
+  // Undo
   useKeyPress(
     ['ctrl.z', 'meta.z'],
     () => {
@@ -70,7 +70,7 @@ function useBindCanvasKeyPress() {
     }
   )
 
-  // 重做
+  // Recover
   useKeyPress(['ctrl.shift.z', 'meta.shift.z'], () => {
     if (!isActiveElementValid()) return
     dispatch(UndoActionCreators.redo())

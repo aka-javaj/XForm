@@ -31,7 +31,7 @@ export default function About(props: PropsType) {
 //   }
 // }
 
-export async function getServerSideProps() {
+ export async function getServerSideProps() {
   // 可以 await 异步请求
 
   console.log('每次请求都会执行...')

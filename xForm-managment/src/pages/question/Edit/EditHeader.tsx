@@ -13,7 +13,7 @@ import styles from './EditHeader.module.scss'
 
 const { Title } = Typography
 
-// 显示和修改标题
+// 显示和修改Title
 const TitleElem: FC = () => {
   const { title } = useGetPageInfo()
   const dispatch = useDispatch()
@@ -78,7 +78,7 @@ const SaveButton: FC = () => {
 
   return (
     <Button onClick={save} disabled={loading} icon={loading ? <LoadingOutlined /> : null}>
-      保存
+      Save
     </Button>
   )
 }
@@ -102,15 +102,15 @@ const PublishButton: FC = () => {
     {
       manual: true,
       onSuccess() {
-        message.success('发布成功')
-        nav('/question/stat/' + id) // 发布成功，跳转到统计页面
+        message.success('publish successful')
+        nav('/question/stat/' + id) // 发布 successful，跳转到统计页面
       },
     }
   )
 
   return (
     <Button type="primary" onClick={pub} disabled={loading}>
-      发布
+      Publish Now
     </Button>
   )
 }
@@ -125,7 +125,7 @@ const EditHeader: FC = () => {
         <div className={styles.left}>
           <Space>
             <Button type="link" icon={<LeftOutlined />} onClick={() => nav(-1)}>
-              返回
+              Return
             </Button>
             <TitleElem />
           </Space>

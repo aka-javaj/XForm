@@ -21,7 +21,7 @@ const UserInfo: FC = () => {
   function logout() {
     dispatch(logoutReducer()) // 清空了 redux user 数据
     removeToken() // 清除 token 的存储
-    message.success('退出成功')
+    message.success('Logout successful')
     nav(LOGIN_PATHNAME)
   }
 

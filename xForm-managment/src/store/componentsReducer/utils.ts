@@ -14,15 +14,15 @@ export function getNextSelectedId(fe_id: string, componentList: ComponentInfoTyp
   let newSelectedId = ''
   const length = visibleComponentList.length
   if (length <= 1) {
-    // 组件长度就一个，被删除了，就没有组件
+    // 组件长度就一个，被Delete了，就没有组件
     newSelectedId = ''
   } else {
     // 组件长度 > 1
     if (index + 1 === length) {
-      // 要删除最后一个，就要选中上一个
+      // 要Delete最后一个，就要选中上一个
       newSelectedId = visibleComponentList[index - 1].fe_id
     } else {
-      // 要删除的不是最后一个，删除以后，选中下一个
+      // 要Delete的不是最后一个，Delete以后，选中下一个
       newSelectedId = visibleComponentList[index + 1].fe_id
     }
   }

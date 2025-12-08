@@ -20,7 +20,7 @@ const Register: FC = () => {
     {
       manual: true,
       onSuccess() {
-        message.success('注册成功')
+        message.success('Registration successful')
         nav(LOGIN_PATHNAME) // 跳转到Login页
       },
     }
@@ -46,7 +46,7 @@ const Register: FC = () => {
             label="Username"
             name="username"
             rules={[
-              { required: true, message: 'Please enter the username' },
+              { required: true, message: 'Please enter your username' },
               { type: 'string', min: 5, max: 20, message: 'The character length is between 5-20' },
               { pattern: /^\w+$/, message: 'Only alphanumeric underscores are allowed' },
             ]}

@@ -19,7 +19,7 @@ const Stat: FC = () => {
   const [selectedComponentId, setSelectedComponentId] = useState('')
   const [selectedComponentType, setSelectedComponentType] = useState('')
 
-  // 修改标题
+  // 修改Title
   useTitle(`问卷统计 - ${title}`)
 
   // loading 效果
@@ -36,10 +36,10 @@ const Stat: FC = () => {
         <div style={{ flex: '1' }}>
           <Result
             status="warning"
-            title="该页面尚未发布"
+            title="this page is not published"
             extra={
               <Button type="primary" onClick={() => nav(-1)}>
-                返回
+                Return
               </Button>
             }
           ></Result>

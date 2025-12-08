@@ -29,13 +29,13 @@ const PropComponent: FC<QuestionTitlePropsType> = (props: QuestionTitlePropsType
       disabled={disabled}
     >
       <Form.Item
-        label="标题内容"
+        label="Title content"
         name="text"
-        rules={[{ required: true, message: '请输入标题内容' }]}
+        rules={[{ required: true, message: 'Please enter title content' }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item label="层级" name="level">
+      <Form.Item label="Front size" name="level">
         <Select
           options={[
             { value: 1, text: 1 },
@@ -45,7 +45,7 @@ const PropComponent: FC<QuestionTitlePropsType> = (props: QuestionTitlePropsType
         ></Select>
       </Form.Item>
       <Form.Item name="isCenter" valuePropName="checked">
-        <Checkbox>居中显示</Checkbox>
+        <Checkbox>Center alignment</Checkbox>
       </Form.Item>
     </Form>
   )

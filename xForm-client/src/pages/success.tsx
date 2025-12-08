@@ -1,8 +1,8 @@
 import PageWrapper from '@/components/PageWrapper'
 
 export default function Success() {
-  return <PageWrapper title="提交成功">
-    <h1>成功</h1>
-    <p>问卷提交成功</p>
+  return <PageWrapper title="Submitted successfully">
+    <h1>Thank you!</h1>
+    <p>Submitted successfully</p>
   </PageWrapper>
 }

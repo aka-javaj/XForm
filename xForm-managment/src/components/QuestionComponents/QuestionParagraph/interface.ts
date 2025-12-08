@@ -8,6 +8,6 @@ export type QuestionParagraphPropsType = {
 }
 
 export const QuestionParagraphDefaultProps: QuestionParagraphPropsType = {
-  text: '一行段落',
+  text: 'Paragraph',
   isCenter: false,
 }

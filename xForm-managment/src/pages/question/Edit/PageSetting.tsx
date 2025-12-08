@@ -28,8 +28,8 @@ const PageSetting: FC = () => {
       onValuesChange={handleValuesChange}
       form={form}
     >
-      <Form.Item label="问卷标题" name="title" rules={[{ required: true, message: '请输入标题' }]}>
-        <Input placeholder="请输入标题" />
+      <Form.Item label="问卷" name="title" rules={[{ required: true, message: 'Please enter Title' }]}>
+        <Input placeholder="Please enter Title" />
       </Form.Item>
       <Form.Item label="问卷描述" name="desc">
         <TextArea placeholder="问卷描述..." />

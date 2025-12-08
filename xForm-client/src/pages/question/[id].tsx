@@ -31,11 +31,11 @@ export default function Question(props: PropsType) {
 
   const { id, title = '', desc = '', isDeleted, isPublished, componentList = [] } = data || {}
 
-  // 已经被删除的，提示错误
+  // 已经被Delete的，提示错误
   if (isDeleted) {
     return <PageWrapper title={title} desc={desc}>
       <h1>{title}</h1>
-      <p>该问卷已经被删除</p>
+      <p>The survey has been deleted</p>
     </PageWrapper>
   }
 
@@ -58,6 +58,7 @@ export default function Question(props: PropsType) {
   </>
 
   return <PageWrapper title={title} desc={desc}>
+    {/* <form method='post' action="http://localhost:3001/api/answer"> */}
     <form method='post' action="/api/answer">
       <input type="hidden" name="questionId" value={id}/>
       
@@ -65,7 +66,7 @@ export default function Question(props: PropsType) {
 
       <div className={styles.submitBtnContainer}>
         {/* <input type="submit" value="提交"/> */}
-        <button type="submit">提交</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
   </PageWrapper>
@@ -76,7 +77,7 @@ export async function getServerSideProps(context: any) {
 
   // 根据 id 获取问卷数据
   const data = await getQuestionById(id)
-
+  // console.log('answerInfo', data)
   return {
     props: data
   }

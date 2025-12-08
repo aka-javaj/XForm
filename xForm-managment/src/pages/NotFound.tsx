@@ -10,10 +10,10 @@ const NotFound: FC = () => {
     <Result
       status="404"
       title="404"
-      subTitle="抱歉，您访问的页面不存在"
+      subTitle="Sorry，the page is lost"
       extra={
         <Button type="primary" onClick={() => nav(MANAGE_INDEX_PATHNAME)}>
-          返回首页
+          Return Index
         </Button>
       }
     ></Result>
